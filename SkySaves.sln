@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkySaves", "SkySaves\SkySaves.csproj", "{AF1AC826-CA09-410A-8EE3-ADEDAD73484A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkySave Test", "SkySave Test\SkySave Test.csproj", "{B175025B-C2BE-495D-8F1B-9112AC76BA2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF1AC826-CA09-410A-8EE3-ADEDAD73484A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1AC826-CA09-410A-8EE3-ADEDAD73484A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1AC826-CA09-410A-8EE3-ADEDAD73484A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1AC826-CA09-410A-8EE3-ADEDAD73484A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B175025B-C2BE-495D-8F1B-9112AC76BA2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B175025B-C2BE-495D-8F1B-9112AC76BA2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B175025B-C2BE-495D-8F1B-9112AC76BA2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B175025B-C2BE-495D-8F1B-9112AC76BA2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1BAFC32-483B-46FA-ADD7-75FD3B5D21C0}
+	EndGlobalSection
+EndGlobal
