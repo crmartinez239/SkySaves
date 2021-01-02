@@ -88,6 +88,13 @@ namespace SkySaves
             return Encoding.UTF8.GetString(byteList);
         }
 
+        public static RefID ReadRefID(ref FileStream fileStream)
+        {
+            return new RefID((byte)fileStream.ReadByte(),
+                             (byte)fileStream.ReadByte(),
+                             (byte)fileStream.ReadByte());
+        }
+
         public static RefID GetRefID(byte[] data, ref int index)
         {
             return
