@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace SkySaves.GlobalDataTable2
 {
-    class Crime
+    public class Crime
     {
         public enum CrimeType : uint
         {
@@ -38,42 +39,40 @@ namespace SkySaves.GlobalDataTable2
         public byte IsCleared { get; private set; }
         public ushort Unknown4 { get; private set; }
 
-        public Crime (byte[] data)
+        public Crime (ref FileStream fileStream)
         {
-            int index = 0;
+            WitnessNumber = BinHelp.ReadUInt32(ref fileStream);
+            TypeOfCrime = (CrimeType)BinHelp.ReadUInt32(ref fileStream);
 
-            WitnessNumber = BinHelp.GetUInt32(data, ref index);
-            TypeOfCrime = (CrimeType)BinHelp.GetUInt32(data, ref index);
+            Unknown1 = (byte)fileStream.ReadByte();
 
-            Unknown1 = data[index++];
+            Quantity = BinHelp.ReadUInt32(ref fileStream);
+            SerialNumber = BinHelp.ReadUInt32(ref fileStream);
 
-            Quantity = BinHelp.GetUInt32(data, ref index);
-            SerialNumber = BinHelp.GetUInt32(data, ref index);
+            Unknown2 = (byte)fileStream.ReadByte();
+            Unknown3 = BinHelp.ReadUInt32(ref fileStream);
 
-            Unknown2 = data[index++];
-            Unknown3 = BinHelp.GetUInt32(data, ref index);
+            ElapsedTime = BinHelp.ReadFloat(ref fileStream);
 
-            ElapsedTime = BinHelp.GetFloat(data, ref index);
+            VictimID = BinHelp.ReadRefID(ref fileStream);
+            CriminalID = BinHelp.ReadRefID(ref fileStream);
+            ItemBaseID = BinHelp.ReadRefID(ref fileStream);
+            OwnershipID = BinHelp.ReadRefID(ref fileStream);
 
-            VictimID = BinHelp.GetRefID(data, ref index);
-            CriminalID = BinHelp.GetRefID(data, ref index);
-            ItemBaseID = BinHelp.GetRefID(data, ref index);
-            OwnershipID = BinHelp.GetRefID(data, ref index);
-
-            WitnessCount = BinHelp.GetVSVal(data, ref index);
+            WitnessCount = BinHelp.ReadVSVal(ref fileStream);
             int witnessCount = WitnessCount.ValueByInt;
 
             Witnesses = new RefID[witnessCount];
 
             for (int i = 0; i < witnessCount; i++)
-                Witnesses[i] = BinHelp.GetRefID(data, ref index);
+                Witnesses[i] = BinHelp.ReadRefID(ref fileStream);
 
-            Bounty = BinHelp.GetUInt32(data, ref index);
-            CrimeFactionID = BinHelp.GetRefID(data, ref index);
+            Bounty = BinHelp.ReadUInt32(ref fileStream);
+            CrimeFactionID = BinHelp.ReadRefID(ref fileStream);
 
-            IsCleared = data[index++];
+            IsCleared = (byte)fileStream.ReadByte();
 
-            Unknown4 = BinHelp.GetUInt16(data, ref index);
+            Unknown4 = BinHelp.ReadUInt16(ref fileStream);
         }
     }
 }
