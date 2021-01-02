@@ -8,7 +8,7 @@ namespace SkySaves.GlobalDataTable2
 {
     class Crime
     {
-        public enum CrimeTypes : uint
+        public enum CrimeType : uint
         {
             Theft,
             Pickpocketing,
@@ -19,20 +19,8 @@ namespace SkySaves.GlobalDataTable2
             Lycanthropy
         }
 
-        public struct CrimeType
-        {
-            public readonly VSVal Count;
-            public readonly Crime[] Crimes;
-
-            public CrimeType(VSVal count, Crime[] crimes)
-            {
-                Count = count;
-                Crimes = crimes;
-            }
-        }
-
         public uint WitnessNumber { get; private set; }
-        public CrimeTypes TypeOfCrime { get; private set; }
+        public CrimeType TypeOfCrime { get; private set; }
         public byte Unknown1 { get; private set; }
         public uint Quantity { get; private set; }
         public uint SerialNumber { get; private set; }
@@ -55,7 +43,7 @@ namespace SkySaves.GlobalDataTable2
             int index = 0;
 
             WitnessNumber = BinHelp.GetUInt32(data, ref index);
-            TypeOfCrime = (CrimeTypes)BinHelp.GetUInt32(data, ref index);
+            TypeOfCrime = (CrimeType)BinHelp.GetUInt32(data, ref index);
 
             Unknown1 = data[index++];
 
