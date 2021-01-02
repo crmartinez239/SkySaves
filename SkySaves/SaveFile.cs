@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using SkySaves.GlobalDataTable1;
+using SkySaves.GlobalDataTable2;
 
 namespace SkySaves
 {
@@ -65,6 +66,8 @@ namespace SkySaves
         public AudioTable Audio { get; private set; } // 7
         public SkyCellsTable SkyCells { get; private set; } // 8
 
+        public ProcessListTable ProcessList { get; private set; } // 100
+
         public void Import(string fileName, bool headerOnly = false)
         {
             try
@@ -124,12 +127,13 @@ namespace SkySaves
                 uint tableType = BinHelp.ReadUInt32(ref stream);
                 uint tableLength = BinHelp.ReadUInt32(ref stream);
 
-                byte[] data = new byte[tableLength];
-                stream.Read(data, 0, (int)tableLength);
+                //byte[] data = new byte[tableLength];
+                //stream.Read(data, 0, (int)tableLength);
 
                 switch ((GlobalDataType)tableType)
                 {
                     case GlobalDataType.ProcessLists: //100
+                        ProcessList = new ProcessListTable(ref stream);
                         break;
                 }
             }
