@@ -94,6 +94,40 @@ namespace SkySaves
                 new RefID(data[index++], data[index++], data[index++]);
         }
 
+        public static VSVal GetVSVal(ref FileStream fileStream)
+        {
+            byte byte0 = (byte)fileStream.ReadByte();
+            byte mask = (1 << 2) - 1;
+            byte valueType = (byte)(byte0 & mask);
+
+            byte uint8Value;
+            ushort uint16Value;
+            uint uint32Value;
+
+            switch((VSVal.ValType) valueType)
+            {
+                case VSVal.ValType.UInt8:
+                    uint8Value = (byte)(byte0 >> 2);
+                    return new VSVal(uint8Value);
+
+                case VSVal.ValType.UInt16:
+                    byte byte1 = (byte)fileStream.ReadByte();
+                    uint16Value = (ushort)((byte0 | byte1 << 8) >> 2);
+                    return new VSVal(uint16Value);
+
+                case VSVal.ValType.UInt32:
+                    byte byte2 = (byte)fileStream.ReadByte();
+                    byte byte3 = (byte)fileStream.ReadByte();
+                    uint32Value =
+                        (uint)((byte0 | (byte2 << 8) | (byte3) << 16) >> 2);
+                    return new VSVal(uint32Value);
+
+                default:
+                    throw new Exception("Unexpected VSVal value.");
+            }
+
+        }
+
         public static VSVal GetVSVal(byte[] data, ref int index)
         {
             byte byte0 = data[index++];
