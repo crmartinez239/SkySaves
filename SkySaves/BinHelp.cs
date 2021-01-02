@@ -101,7 +101,7 @@ namespace SkySaves
                 new RefID(data[index++], data[index++], data[index++]);
         }
 
-        public static VSVal GetVSVal(ref FileStream fileStream)
+        public static VSVal ReadVSVal(ref FileStream fileStream)
         {
             byte byte0 = (byte)fileStream.ReadByte();
             byte mask = (1 << 2) - 1;
