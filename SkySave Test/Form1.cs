@@ -48,20 +48,14 @@ namespace SkySave_Test
             openFileDialog.ShowDialog(this);
             string saveFile = openFileDialog.FileName;
 
-            if (saveFile != String.Empty)
+            if (saveFile == string.Empty)
+                return;
+
+            var sf = new SkySaves.SaveFile();
+
+            if (!sf.Import(saveFile))
             {
-                SkySaves.SaveFile sf;
-                try
-                {
-                    sf = new SkySaves.SaveFile();
-                    sf.Import(saveFile);
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                MessageBox.Show("we good");
+
             }
         }
 
