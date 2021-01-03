@@ -45,7 +45,28 @@ namespace SkySave_Test
 
         private void openSaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            openFileDialog.ShowDialog(this);
+            string saveFile = openFileDialog.FileName;
 
+            if (saveFile != String.Empty)
+            {
+                SkySaves.SaveFile sf;
+                try
+                {
+                    sf = new SkySaves.SaveFile();
+                    sf.Import(saveFile);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show("we good");
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
         }
 
         //private void appendRedText(string text)
