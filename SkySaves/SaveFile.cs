@@ -49,6 +49,8 @@ namespace SkySaves
     {
         private const string magicValue = @"TESV_SAVEGAME";
 
+        public string ErrorMessage { get; private set; }
+
         public byte FormVersion { get; private set; }
 
         public Header HeaderInfo { get; private set; }
@@ -68,10 +70,11 @@ namespace SkySaves
 
         public ProcessListTable ProcessList { get; private set; } // 100
 
-        public void Import(string fileName, bool headerOnly = false)
+        public bool Import(string fileName, bool headerOnly = false)
         {
             try
             {
+                ErrorMessage = string.Empty;
                 var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
 
                 // Retrieve byte value of magic string (char[13])
@@ -80,7 +83,10 @@ namespace SkySaves
 
                 // Check value of magic string
                 if (Encoding.UTF8.GetString(magic) != magicValue)
+                {
+                    stream.Close();
                     throw new Exception("Invalid file type.");
+                }
 
                 // Retrieve the header of save file (SaveHeader)
                 uint headerSize = BinHelp.ReadUInt32(ref stream);
@@ -91,12 +97,13 @@ namespace SkySaves
                 HeaderInfo = new Header(headerData, ref stream);
                 if (HeaderInfo.Version == 12)
                 {
+                    stream.Close();
                     throw new Exception("SkyrimSE is not supported.");
                 }
                 if (headerOnly == true)
                 {
                     stream.Close();
-                    return;
+                    return true;
                 }
 
                 // form version is an uint8 or byte. not sure what its used for
@@ -115,12 +122,13 @@ namespace SkySaves
 
 
                 stream.Close();
+                return true;
             }
             catch (Exception e)
             {
-                //string m = e.Message;
-            }
-
+                ErrorMessage = e.Message;
+                return false;
+            }            
         }
 
         private void parseGlobalData2(ref FileStream stream)
