@@ -89,6 +89,10 @@ namespace SkySaves
 
                 // The Header class needs access to our stream to extract screenshot data
                 HeaderInfo = new Header(headerData, ref stream);
+                if (HeaderInfo.Version == 12)
+                {
+                    throw new Exception("SkyrimSE is not supported.");
+                }
                 if (headerOnly == true)
                 {
                     stream.Close();
