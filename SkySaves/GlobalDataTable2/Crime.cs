@@ -64,5 +64,23 @@ namespace SkySaves.GlobalDataTable2
 
             Unknown4 = BinHelp.ReadUInt16(ref fileStream);
         }
+
+        public string CrimeTypeF
+        {
+            get
+            {
+                switch (CrimeType)
+                {
+                    case 0: return "Theft";
+                    case 1: return "Pickpockting";
+                    case 2: return "Tresspassing";
+                    case 3: return "Assualt";
+                    case 4: return "Murder";
+                    // 5 for some reason has been left blank in the file format
+                    case 6: return "Lycanthropy";
+                    default: return "Unknown";
+                }
+            }
+        }
     }
 }
