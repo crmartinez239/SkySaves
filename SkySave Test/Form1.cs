@@ -13,36 +13,6 @@ namespace SkySave_Test
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            openFileDialog.ShowDialog(this);
-            string saveFile = openFileDialog.FileName;
-
-            if (saveFile != String.Empty)
-            {
-
-                //    richTextBox1.Text = string.Empty;
-                //    var saver = new SkySaves.SaveFile();
-                //    saver.Import(saveFile);
-                //    debug("Name", saver.HeaderInfo.PlayerName);
-                //    debug("Level", saver.HeaderInfo.PlayerLevel);
-                //    debug("Location", saver.HeaderInfo.PlayerLocation);
-                //    debug("Game Date", saver.HeaderInfo.GameDate);
-                //    debug("Race", saver.HeaderInfo.PlayerRace);
-                //    debug("Sex", saver.HeaderInfo.PlayerSexF);
-                //    debug("Version", saver.HeaderInfo.Version);
-
-                //    foreach (string plugIn in saver.PlugIns.PlugIns)
-                //        debug("Plug In", plugIn);
-
-                //    foreach (var miscStat in saver.MiscStats.Stats)
-                //        debug(miscStat.Name, miscStat.Value.ToString());
-
-                //    pictureBox1.Image = new Bitmap(saver.HeaderInfo.ScreenShot.ScreenShotImage,
-                //        new Size(pictureBox1.Width, pictureBox1.Height));
-            }
-        }
-
         private void openSaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog.ShowDialog(this);
@@ -55,48 +25,41 @@ namespace SkySave_Test
 
             if (!sf.Import(saveFile))
             {
-
+                MessageBox.Show(sf.ErrorMessage, "File Error");
+                return;
             }
+
+            fillList(sf);    
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void fillList(SkySaves.SaveFile sf)
         {
+            var headerNode = new TreeNode("Header");
+            headerNode.Nodes.Add($"Name - {sf.HeaderInfo.PlayerName}");
+            headerNode.Nodes.Add($"Level - {sf.HeaderInfo.PlayerLevel}");
+            headerNode.Nodes.Add($"Sex - {sf.HeaderInfo.PlayerSexF}");
+            headerNode.Nodes.Add($"Race - {sf.HeaderInfo.PlayerRace}");
+            headerNode.Nodes.Add($"Game Date - {sf.HeaderInfo.GameDate}");
+            headerNode.Nodes.Add($"Location - {sf.HeaderInfo.PlayerLocation}");
+            headerNode.Nodes.Add($"Version - {sf.HeaderInfo.Version}");
+
+            var plugInsNode = new TreeNode("PlugIns");
+            foreach (string plugIn in sf.PlugIns.PlugIns)
+                plugInsNode.Nodes.Add(plugIn);
+
+            var miscStatNode = new TreeNode("Misc Stats");
+            foreach (var stat in sf.MiscStats.Stats)
+                miscStatNode.Nodes.Add($"{stat.CategoryF} - {stat.Name} - {stat.Value}");
+
+            var crimeInfoNode = new TreeNode("Crime Info");
+            foreach (var crime in sf.ProcessList.AllCrimes)
+                crimeInfoNode.Nodes.Add($"{crime.CrimeType} - Committed - ${crime.c}")
+
+            treeView1.Nodes.Add(headerNode);
+            treeView1.Nodes.Add(plugInsNode);
+            treeView1.Nodes.Add(miscStatNode);
         }
 
-        //private void appendRedText(string text)
-        //{
-        //    richTextBox1.SelectionColor = Color.Red;
-        //    richTextBox1.AppendText($"{text}: ");
-        //    richTextBox1.SelectionColor = SystemColors.WindowText;
-        //}
-
-        //private void debug(string title, string text)
-        //{
-        //    appendRedText(title);
-        //    richTextBox1.AppendText($"{text}\n");
-        //}
-
-        //private void debug(string title, uint number)
-        //{
-        //    appendRedText(title);
-        //    richTextBox1.AppendText($"{number.ToString()}\n");
-        //}
-
-        //private void debug(string title, byte b)
-        //{
-        //    appendRedText(title);
-        //    richTextBox1.AppendText($"{b.ToString()}\n");
-        //}
-
-        //private void debug(string title, byte[] b)
-        //{
-        //    appendRedText(title);
-        //    foreach(byte i in b)
-        //    {
-        //        richTextBox1.AppendText($"{i.ToString()} ");
-        //    }
-
-        //    richTextBox1.AppendText("\n");
-        //}
     }
+
 }

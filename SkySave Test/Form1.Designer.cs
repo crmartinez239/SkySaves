@@ -65,7 +65,7 @@
             this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1145, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(1145, 42);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -77,7 +77,7 @@
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.eventsToolStripMenuItem.Name = "eventsToolStripMenuItem";
-            this.eventsToolStripMenuItem.Size = new System.Drawing.Size(72, 36);
+            this.eventsToolStripMenuItem.Size = new System.Drawing.Size(72, 38);
             this.eventsToolStripMenuItem.Text = "File";
             // 
             // openSaveToolStripMenuItem
@@ -116,36 +116,36 @@
             this.viewRawBitmapToolStripMenuItem,
             this.exportBitmapToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(90, 36);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(90, 38);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // viewJSONToolStripMenuItem
             // 
             this.viewJSONToolStripMenuItem.Name = "viewJSONToolStripMenuItem";
-            this.viewJSONToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.viewJSONToolStripMenuItem.Size = new System.Drawing.Size(332, 44);
             this.viewJSONToolStripMenuItem.Text = "View JSON";
             // 
             // exportJSONToolStripMenuItem
             // 
             this.exportJSONToolStripMenuItem.Name = "exportJSONToolStripMenuItem";
-            this.exportJSONToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.exportJSONToolStripMenuItem.Size = new System.Drawing.Size(332, 44);
             this.exportJSONToolStripMenuItem.Text = "Export JSON";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(356, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(329, 6);
             // 
             // viewRawBitmapToolStripMenuItem
             // 
             this.viewRawBitmapToolStripMenuItem.Name = "viewRawBitmapToolStripMenuItem";
-            this.viewRawBitmapToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.viewRawBitmapToolStripMenuItem.Size = new System.Drawing.Size(332, 44);
             this.viewRawBitmapToolStripMenuItem.Text = "View Raw Bitmap";
             // 
             // exportBitmapToolStripMenuItem
             // 
             this.exportBitmapToolStripMenuItem.Name = "exportBitmapToolStripMenuItem";
-            this.exportBitmapToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.exportBitmapToolStripMenuItem.Size = new System.Drawing.Size(332, 44);
             this.exportBitmapToolStripMenuItem.Text = "Export Bitmap";
             // 
             // Form1
@@ -159,7 +159,6 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.Text = "SkySaves Test";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
