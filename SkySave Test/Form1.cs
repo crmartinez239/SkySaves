@@ -53,11 +53,12 @@ namespace SkySave_Test
 
             var crimeInfoNode = new TreeNode("Crime Info");
             foreach (var crime in sf.ProcessList.AllCrimes)
-                crimeInfoNode.Nodes.Add($"{crime.CrimeType} - Committed - ${crime.c}")
+                crimeInfoNode.Nodes.Add($"{crime.CrimeTypeF} - Bounty - {crime.Bounty}");
 
             treeView1.Nodes.Add(headerNode);
             treeView1.Nodes.Add(plugInsNode);
             treeView1.Nodes.Add(miscStatNode);
+            treeView1.Nodes.Add(crimeInfoNode);
         }
 
     }
