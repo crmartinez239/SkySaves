@@ -9,19 +9,8 @@ namespace SkySaves.GlobalDataTable2
 {
     public class Crime
     {
-        public enum CrimeType : uint
-        {
-            Theft,
-            Pickpocketing,
-            Tresspassing,
-            Assualt,
-            Murder,
-            Blank,
-            Lycanthropy
-        }
-
         public uint WitnessNumber { get; private set; }
-        public CrimeType TypeOfCrime { get; private set; }
+        public uint CrimeType { get; private set; }
         public byte Unknown1 { get; private set; }
         public uint Quantity { get; private set; }
         public uint SerialNumber { get; private set; }
@@ -39,11 +28,12 @@ namespace SkySaves.GlobalDataTable2
         public byte IsCleared { get; private set; }
         public ushort Unknown4 { get; private set; }
 
+
         public Crime (ref FileStream fileStream)
         {
             WitnessNumber = BinHelp.ReadUInt32(ref fileStream);
-            TypeOfCrime = (CrimeType)BinHelp.ReadUInt32(ref fileStream);
-
+            CrimeType = BinHelp.ReadUInt32(ref fileStream);
+                
             Unknown1 = (byte)fileStream.ReadByte();
 
             Quantity = BinHelp.ReadUInt32(ref fileStream);
